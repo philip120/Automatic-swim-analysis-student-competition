@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hip Light Tracking — computer vision for accurate swimmer velocity from poolside video, without cables or wearables.">
+  <meta name="author" content="Philip Paskov, Marek Polach">
+  <title>Hip Light Tracking — Swimmer Velocity from Video</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">Hip Light Tracking</a>
+      <nav class="nav">
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#demo">Demo</a>
+        <a href="#outputs">Outputs</a>
+        <a href="#stack">Stack</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1 · Hero -->
+    <article class="post">
+      <header class="post-header">
+        <div class="container narrow">
+          <p class="eyebrow">Computer Vision · Sports Analytics</p>
+          <h1 class="post-title">Measuring swimmer velocity from a single poolside video</h1>
+          <p class="post-deck">
+            A desktop analysis tool that tracks a hip-mounted light, corrects for camera motion,
+            and exports real-world speed data — no cables, no wearables, no lab setup.
+          </p>
+          <div class="post-meta">
+            <span class="post-authors">
+              <span class="author-name">Philip Paskov</span>
+              <span class="author-collab">in collaboration with Marek Polach</span>
+            </span>
+            <span aria-hidden="true">·</span>
+            <span>Student Competition Showcase</span>
+            <span aria-hidden="true">·</span>
+            <time datetime="2026">2026</time>
+          </div>
+        </div>
+      </header>
+
+      <div class="hero-visual container">
+        <figure class="media-block hero-figure">
+          <div class="media-frame media-frame--hero">
+            <img
+              src="assets/screenshot.png"
+              alt="Hip Light Tracking application showing video playback with velocity graph overlay"
+              onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')"
+            >
+            <div class="media-placeholder">
+              <span class="placeholder-label">App screenshot</span>
+              <span class="placeholder-hint">Drop your screenshot at <code>assets/screenshot.png</code></span>
+            </div>
+          </div>
+          <figcaption>The analysis workspace — synchronized video playback and live velocity graphs.</figcaption>
+        </figure>
+      </div>
+
+      <div class="container narrow post-body">
+
+        <!-- 2 · Problem -->
+        <section id="problem" class="section">
+          <h2>The problem</h2>
+          <p>
+            Traditionally, measuring swimmer velocity required attaching cables or sensors to the athlete,
+            which made setup complex and data analysis time consuming.
+          </p>
+          <p>
+            Poolside video seems like an obvious alternative — but a panning camera mixes the swimmer's
+            motion with the camera's motion. Pixel tracking alone gives you the wrong answer.
+          </p>
+          <blockquote class="pull-quote">
+            We wanted lab-quality speed curves from footage coaches already film on their phones.
+          </blockquote>
+        </section>
+
+        <!-- 3 · Solution -->
+        <section id="solution" class="section">
+          <h2>The solution</h2>
+          <p>
+            Hip Light Tracking detects a small light on the swimmer's hip and reference markers along
+            the lane rope. The app includes <strong>parallax calibration</strong> (lane width + camera distance)
+            and <strong>water surface marking</strong> to convert pixels → real-world meters correctly.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">◎</div>
+              <h3>Parallax calibration</h3>
+              <p>Two marker rows at different depths give separate px→m scales, so perspective distortion is handled properly.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">≋</div>
+              <h3>Water surface marking</h3>
+              <p>Two clicks on the water line anchor depth and help relate hip position to the pool geometry.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">↔</div>
+              <h3>Camera motion correction</h3>
+              <p>Reference markers move with the camera; subtracting their velocity isolates the swimmer's true speed.</p>
+            </div>
+          </div>
+
+          <figure class="media-block">
+            <div class="media-frame">
+              <img
+                src="assets/calibration.png"
+                alt="Parallax calibration interface with front and back marker rows marked on pool video"
+                onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')"
+              >
+              <div class="media-placeholder">
+                <span class="placeholder-label">Calibration screenshot</span>
+                <span class="placeholder-hint">Optional: <code>assets/calibration.png</code></span>
+              </div>
+            </div>
+            <figcaption>Interactive calibration turns pixel motion into meters — even with a moving camera.</figcaption>
+          </figure>
+        </section>
+
+        <!-- Demo -->
+        <section id="demo" class="section">
+          <h2>See it in action</h2>
+          <p>
+            From raw pool footage to corrected velocity curves and annotated output video — the full
+            pipeline runs in a single desktop session.
+          </p>
+
+          <figure class="media-block video-block">
+            <div class="media-frame media-frame--video">
+              <video controls playsinline poster="assets/video-poster.jpg" onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')">
+                <source src="assets/demo.mp4" type="video/mp4" onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')">
+                Your browser does not support embedded video.
+              </video>
+              <div class="media-placeholder media-placeholder--video">
+                <span class="placeholder-label">Demo video</span>
+                <span class="placeholder-hint">Drop your recording at <code>assets/demo.mp4</code></span>
+                <span class="placeholder-hint">Optional poster: <code>assets/video-poster.jpg</code></span>
+              </div>
+            </div>
+            <figcaption>End-to-end demo — detection, calibration, velocity correction, and export.</figcaption>
+          </figure>
+        </section>
+
+        <!-- 5 · Outputs -->
+        <section id="outputs" class="section">
+          <h2>Session outputs</h2>
+          <p>
+            Every session exports a <code>corrected_velocity.csv</code> plus a rendered video with
+            overlaid metrics — ready for coaching review or further analysis.
+          </p>
+
+          <div class="output-showcase">
+            <div class="output-card">
+              <span class="output-badge">Data</span>
+              <h3>corrected_velocity.csv</h3>
+              <p>Frame-by-frame hip position, velocity, and acceleration in real-world units (m/s).</p>
+              <pre class="code-snippet"><code>frame,x,y,vx_m,vy_m,ax_m
+142,812.4,391.2,1.84,-0.03,0.12
+143,818.1,390.8,1.91,-0.02,0.09
+144,824.0,390.5,1.88,-0.01,-0.04</code></pre>
+            </div>
+            <div class="output-card">
+              <span class="output-badge output-badge--video">Video</span>
+              <h3>Annotated export</h3>
+              <p>Rendered MP4 with detection overlays, marker labels, and live speed graph burned in.</p>
+              <ul class="output-list">
+                <li><code>output_with_markers.mp4</code></li>
+                <li><code>output_trajectory_graph.mp4</code></li>
+                <li><code>output_velocity.mp4</code></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6 · Stack -->
+        <section id="stack" class="section">
+          <h2>Built with</h2>
+          <p>A focused stack chosen for fast iteration on detection quality and a responsive analysis UI.</p>
+          <ul class="tech-stack">
+            <li>
+              <strong>RF-DETR</strong>
+              <span>Custom-trained detection for hip light, rope markers, and floor references</span>
+            </li>
+            <li>
+              <strong>PyQt6</strong>
+              <span>Desktop UI for video playback, calibration workflows, and batch processing</span>
+            </li>
+            <li>
+              <strong>pyqtgraph</strong>
+              <span>Live velocity, speed, and acceleration graphs synced to video frames</span>
+            </li>
+            <li>
+              <strong>OpenCV</strong>
+              <span>Frame I/O, overlay rendering, and export pipeline</span>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Philip Paskov · in collaboration with Marek Polach</p>
+      <p class="footer-note">Hip Light Tracking · Student Competition Showcase</p>
+      <p class="footer-note">Source code and model weights are not publicly released.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.media-frame--video video').forEach(function (video) {
+      video.addEventListener('error', function () {
+        video.closest('.media-frame').classList.add('media-frame--placeholder');
+      });
+      // Show placeholder when source file is missing (404)
+      video.addEventListener('loadeddata', function () {
+        if (video.videoWidth === 0) {
+          video.closest('.media-frame').classList.add('media-frame--placeholder');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
