@@ -99,10 +99,21 @@
             camera. Track pixels naively and you measure the camera pan as much as the swimmer —
             so neither traditional sensors nor raw video alone give a trustworthy answer.
           </p>
-          <blockquote class="pull-quote">
-            We needed velocity you could trust in a real training environment — without the
-            hardware headaches or the long turnaround.
-          </blockquote>
+
+          <figure class="media-block section-media">
+            <div class="media-frame">
+              <img
+                src="assets/problem.png"
+                alt="Traditional sensor setup versus poolside video analysis"
+                onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')"
+              >
+              <div class="media-placeholder">
+                <span class="placeholder-label">Problem illustration</span>
+                <span class="placeholder-hint">Drop image at <code>assets/problem.png</code></span>
+              </div>
+            </div>
+            <figcaption>Sensor-based workflows vs. the limitations of raw poolside video.</figcaption>
+          </figure>
         </section>
 
         <!-- 3 · Solution -->
@@ -132,7 +143,7 @@
             </div>
           </div>
 
-          <figure class="media-block">
+          <figure class="media-block section-media">
             <div class="media-frame">
               <img
                 src="assets/calibration.png"
@@ -141,7 +152,7 @@
               >
               <div class="media-placeholder">
                 <span class="placeholder-label">Calibration screenshot</span>
-                <span class="placeholder-hint">Optional: <code>assets/calibration.png</code></span>
+                <span class="placeholder-hint">Drop image at <code>assets/calibration.png</code></span>
               </div>
             </div>
             <figcaption>Interactive calibration turns pixel motion into meters — even with a moving camera.</figcaption>
@@ -156,7 +167,7 @@
             pipeline runs in a single desktop session.
           </p>
 
-          <figure class="media-block video-block">
+          <figure class="media-block section-media video-block">
             <div class="media-frame media-frame--video">
               <video controls playsinline poster="assets/video-poster.jpg" onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')">
                 <source src="assets/demo.mp4" type="video/mp4" onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')">
@@ -201,6 +212,21 @@
               </ul>
             </div>
           </div>
+
+          <figure class="media-block section-media">
+            <div class="media-frame">
+              <img
+                src="assets/outputs.png"
+                alt="Exported velocity graph and annotated output video"
+                onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')"
+              >
+              <div class="media-placeholder">
+                <span class="placeholder-label">Output screenshot</span>
+                <span class="placeholder-hint">Drop image at <code>assets/outputs.png</code></span>
+              </div>
+            </div>
+            <figcaption>Example session export — velocity data and annotated video side by side.</figcaption>
+          </figure>
         </section>
 
         <!-- 6 · Stack -->
@@ -225,6 +251,21 @@
               <span>Frame I/O, overlay rendering, and export pipeline</span>
             </li>
           </ul>
+
+          <figure class="media-block section-media">
+            <div class="media-frame">
+              <img
+                src="assets/stack.png"
+                alt="Application architecture and technology stack overview"
+                onerror="this.closest('.media-frame').classList.add('media-frame--placeholder')"
+              >
+              <div class="media-placeholder">
+                <span class="placeholder-label">Stack diagram</span>
+                <span class="placeholder-hint">Drop image at <code>assets/stack.png</code></span>
+              </div>
+            </div>
+            <figcaption>Detection, UI, and video pipeline working together in one desktop app.</figcaption>
+          </figure>
         </section>
 
       </div>
