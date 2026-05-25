@@ -229,6 +229,33 @@ code {
   color: var(--text);
 }
 
+.problem-list {
+  margin: 1.5rem 0 1.75rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.problem-list li {
+  padding: 1.125rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  box-shadow: var(--shadow);
+}
+
+.problem-list strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* ── Feature grid ─────────────────────────────────────────────── */
 .feature-grid {
   display: grid;
